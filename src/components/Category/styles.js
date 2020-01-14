@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Anchor = styled.a`
-    dusplay: flex;
+    display: flex;
     flex-direction: column;
     text-align: center;
     text-decoration: none;
