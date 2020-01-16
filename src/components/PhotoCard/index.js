@@ -8,15 +8,15 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v15
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
     return (
-    <article>
-        <a href={`/detail/${id}`}>
-            <ImageWrapper>
-                <Image src={ src } />
-            </ImageWrapper>
+        <article>
+            <a href={`/detail/${id}`}>
+                <ImageWrapper>
+                    <Image src={ src } />
+                </ImageWrapper>
             </a>
             <Button>
                 <MdFavoriteBorder size={ 16 } /> { likes } likes
             </Button>
-    </article>
+        </article>
     ) 
 }
