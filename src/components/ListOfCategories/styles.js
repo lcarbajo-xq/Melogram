@@ -1,24 +1,27 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { fadeIn } from './../../styles/animation';
 
 export const List = styled.ul`
     display: flex;
     overflow-x: scroll;
-    &.fixed {
-        ${fadeIn};
-       background: #fff;
-       border-radius: 60px;
-       box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.3);
-       left: 0;
-       margin: 0 auto;
-       max-width: 400px;
-       right: 0;
-       top: -20px;
-       position: fixed;
-       padding: 5px;
-       transform: scale(.75);
-       z-index: 1; 
+    /* Recogemos como Prop el Fixed y si existe la prop, ejecutamos el css */
+    /* (Antes) &.fixed { */
+    ${ props => props.fixed && css`
+        {  /* ${fadeIn}; */
+        background: #fff;
+        border-radius: 60px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.3);
+        left: 0;
+        margin: 0 auto;
+        max-width: 400px;
+        right: 0;
+        top: -20px;
+        position: fixed;
+        padding: 5px;
+        transform: scale(.75);
+        z-index: 1; 
+        }`
     }
 `
 
