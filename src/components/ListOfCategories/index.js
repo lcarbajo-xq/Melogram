@@ -59,7 +59,6 @@ export const ListOfCategories = () => {
         const onScroll = e => {
             // newShowFixed es True si el scroll vertical es mayor que 200
             const newShowFixed = window.scrollY > 200
-            console.log(newShowFixed)
             showFixed != newShowFixed && setShowFixed(newShowFixed)
         }
 
