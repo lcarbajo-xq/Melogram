@@ -59,12 +59,14 @@ export const ListOfCategories = () => {
         const onScroll = e => {
             // newShowFixed es True si el scroll vertical es mayor que 200
             const newShowFixed = window.scrollY > 200
+            console.log(newShowFixed)
             showFixed != newShowFixed && setShowFixed(newShowFixed)
         }
 
         document.addEventListener('scroll', onScroll)
 
-    })
+        return () => document.removeEventListener('scroll', onScroll)
+        }, [showFixed])
 
     const renderList = (fixed) => (
         // Añadidmos una ternaria para detemrinar el className
@@ -72,7 +74,7 @@ export const ListOfCategories = () => {
             // Components, le pasamos a la "prop" fixed el valor de "fixed" de 
             // renderlist
             // (Antes) -> <List className={ fixed ? 'fixed' : '' } >
-        <List props={ fixed } >
+        <List fixed={ fixed } >
 
             {/* Dependiendo del "Loading" mostramos el valor por defecto
                 de Category o toda la lista de Category */}

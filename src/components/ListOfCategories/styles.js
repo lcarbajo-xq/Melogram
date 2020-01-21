@@ -8,7 +8,7 @@ export const List = styled.ul`
     /* Recogemos como Prop el Fixed y si existe la prop, ejecutamos el css */
     /* (Antes) &.fixed { */
     ${ props => props.fixed && css`
-        {  /* ${fadeIn}; */
+        {
         background: #fff;
         border-radius: 60px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0, 0.3);
