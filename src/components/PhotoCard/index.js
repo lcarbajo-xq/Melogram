@@ -1,4 +1,4 @@
-import React , { useEffect, useRef, useState, Fragment } from 'react'
+import React , { Fragment } from 'react'
 
 import { Article, ImageWrapper, Image, Button } from './styles'
 
@@ -12,17 +12,17 @@ const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v15
 
 export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
 
-
-    // Estado para manejar los "likes" en local storage
-
-        //Creamos una key unica like-id_de_photocard para almacenar el valor unico de cada like de photocard
+    //Creamos una key unica like-id_de_photocard para almacenar el valor unico de cada like de photocard
 
     const key = `like-${ id }`
 
-        //El estado de "likes" lo recuperaremos del local storage invondo el valor del like de cada photocard
-        //a partir de la key unica
+    //Hacemos la llamada al lazyload para ejecutarlo en el DOM
 
     const [ Show, ref ] = useLazyLoad ()   
+    
+    //El estado de "likes" lo recuperaremos del local storage invocando el valor del like de cada photocard
+    //a partir de la key unica
+
     const [ liked, setLiked ] = useLocalStorage( key, false)
 
     //El Icono del Like será uno u otro dependiendo del valor de liked. Renderizaremos Icon
