@@ -6,8 +6,8 @@ import { ApolloProvider } from 'react-apollo'
 
 import {App} from './app'
 
-const client = new ApolloCLient({ 
-    uri: 'https://melogram.lcarbajo.now.sh/graphql' })
+const client = new ApolloClient({ 
+    uri: 'https://melogram-server.now.sh/graphql' })
 
 ReactDOM.render(
     <ApolloProvider client={ client } >

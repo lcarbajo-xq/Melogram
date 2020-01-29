@@ -3,14 +3,12 @@ import React , { Fragment } from 'react'
 import { Article, ImageWrapper, Image, Button } from './styles'
 
 import { useLocalStorage } from './../../hooks/useLocalStorage'
-
 import { useLazyLoad } from './../../hooks/useLazyLoad'
 
-import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
+import { ToggleLikeMutation } from '../../container/ToggleLikeMutation'
+import { FavButton } from '../FavButton'
 
-const DEFAULT_IMAGE = 'https://res.cloudinary.com/midudev/image/upload/w_150/v1555671700/category_hamsters.jpg'
-
-export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
+export const PhotoCard = ({ id, likes = 0, src = '' }) => {
 
     //Creamos una key unica like-id_de_photocard para almacenar el valor unico de cada like de photocard
 
@@ -27,8 +25,6 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
 
     //El Icono del Like será uno u otro dependiendo del valor de liked. Renderizaremos Icon
 
-    const Icon = liked ? MdFavorite : MdFavoriteBorder
-
     // Variable para setear el local storage. Con cada valor que le llegue, va a intentar guardarlo
     // en el local storage, bajo el nombre '
 
@@ -36,15 +32,27 @@ export const PhotoCard = ({ id, likes = 0, src = DEFAULT_IMAGE }) => {
         <Article ref= { ref }>
             {
                 Show &&  <Fragment>
-                            <a href={`/detail/${id}`}>
+                            <a href={`/?detail=${id}`}>
                                 <ImageWrapper>
-                                    <Image src={ src } />
+                                    {
+                                        src &&
+                                    <Image src={ src } /> }
                                 </ImageWrapper>
                             </a>
                             {/* Usamos el setLocalStorage para modificar el "like" con cada click */}
-                            <Button onClick= { () => setLiked(!liked )}>
-                                <Icon size={ 16 } /> { likes } likes
-                            </Button>
+                            <ToggleLikeMutation>
+                                { ( toggleLike ) => {
+                                   const handleFavClick = () => { 
+                                        !liked && toggleLike( { variables: {
+                                            input: { id }
+                                        }})
+                                        setLiked (!liked) }
+                                   return <FavButton 
+                                onClick={ handleFavClick } likes={ likes } liked= { liked } /> }
+                                }
+                                
+                            </ToggleLikeMutation>    
+                               
                          </Fragment>
             }
         </Article>

@@ -1,17 +1,18 @@
 {
     "version": 2,
-    "name": "melogram-server",
+    "name": "melogram2",
     "builds": [
-        {
-            "use": "@now/node",
-             "src": "index.js"   }
+      { "use": "@now/static-build", "src": "package.json"}
     ],
-    "routes": [{
-        "headers": {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, Accept"
-        },
-        "src": "/.*", "dest": "index.js" }
-      ]
-}
+    "routes": [
+      {
+        "src": "(.*).js", "dest": "/$1.js"
+      },
+      {
+        "src": "(.*).json", "dest": "/$1.json"
+      },
+      {
+        "src": "/.*", "dest": "/index.html"
+      }
+    ]
+  }
