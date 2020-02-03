@@ -1,12 +1,13 @@
 import React , { Fragment } from 'react'
 
-import { Article, ImageWrapper, Image, Button } from './styles'
+import { Article, ImageWrapper, Image } from './styles'
 
 import { useLocalStorage } from './../../hooks/useLocalStorage'
 import { useLazyLoad } from './../../hooks/useLazyLoad'
 
 import { ToggleLikeMutation } from '../../container/ToggleLikeMutation'
 import { FavButton } from '../FavButton'
+import { Link } from '@reach/router'
 
 export const PhotoCard = ({ id, likes = 0, src = '' }) => {
 
@@ -32,13 +33,13 @@ export const PhotoCard = ({ id, likes = 0, src = '' }) => {
         <Article ref= { ref }>
             {
                 Show &&  <Fragment>
-                            <a href={`/?detail=${id}`}>
+                            <Link to={`/detail/${id}`}>
                                 <ImageWrapper>
                                     {
                                         src &&
                                     <Image src={ src } /> }
                                 </ImageWrapper>
-                            </a>
+                            </Link>
                             {/* Usamos el setLocalStorage para modificar el "like" con cada click */}
                             <ToggleLikeMutation>
                                 { ( toggleLike ) => {
