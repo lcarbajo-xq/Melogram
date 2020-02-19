@@ -8,10 +8,10 @@ import { Router } from '@reach/router'
 import { User } from './pages/User'
 import { Favs } from './pages/Favs'
 import { NonRegisteredUser } from './pages/NonRegisteredUser'
+import Context from './Context'
 
-const UserLogged = ( { children } ) => {
-    return children( { isAuth: true } )
-}
+/***-- COMPONENTE UserLogged CON RENDER PROPS PARA DETERMINAR QUE COMPONENTE SE DEBE RENDERIZAR,
+***-   EN FUNCIÓN DE SI EL USUARIO ESTÁ LOGGEADO O NO -***/
 
 export const App = () => {
     const urlParams = new window.URLSearchParams( window.location.search )
@@ -24,7 +24,11 @@ export const App = () => {
             <Home path='/pet/:id' />
             <Detail path='/detail/:detailId' />
         </Router>
-        <UserLogged>
+
+        {/* LLAMADA A COMPONENTE CON CHILDREN, FUNCION QUE RECIBE EL VALOR DE AUTENTICACIÓN
+            SI ESTÁ AUTENTICADO, DEVOLVEMOS EL ROUTING QUE CORRESPONDA */}
+
+        <Context.Consumer>
             {
                 ( { isAuth } ) => 
                     isAuth
@@ -39,7 +43,7 @@ export const App = () => {
                         <NonRegisteredUser path='/user'/>
                     </Router>
             }
-        </UserLogged>
+        </Context.Consumer>
         <NavBar />
     </div>
    )

@@ -2,27 +2,17 @@ import React , { Fragment } from 'react'
 
 import { Article, ImageWrapper, Image } from './styles'
 
-import { useLocalStorage } from './../../hooks/useLocalStorage'
 import { useLazyLoad } from './../../hooks/useLazyLoad'
 
 import { ToggleLikeMutation } from '../../container/ToggleLikeMutation'
 import { FavButton } from '../FavButton'
 import { Link } from '@reach/router'
 
-export const PhotoCard = ({ id, likes = 0, src = '' }) => {
-
-    //Creamos una key unica like-id_de_photocard para almacenar el valor unico de cada like de photocard
-
-    const key = `like-${ id }`
+export const PhotoCard = ({ id, liked, likes = 0, src = '' }) => {
 
     //Hacemos la llamada al lazyload para ejecutarlo en el DOM
 
     const [ Show, ref ] = useLazyLoad ()   
-    
-    //El estado de "likes" lo recuperaremos del local storage invocando el valor del like de cada photocard
-    //a partir de la key unica
-
-    const [ liked, setLiked ] = useLocalStorage( key, false)
 
     //El Icono del Like será uno u otro dependiendo del valor de liked. Renderizaremos Icon
 
@@ -44,14 +34,13 @@ export const PhotoCard = ({ id, likes = 0, src = '' }) => {
                             <ToggleLikeMutation>
                                 { ( toggleLike ) => {
                                    const handleFavClick = () => { 
-                                        !liked && toggleLike( { variables: {
+                                        toggleLike( { variables: {
                                             input: { id }
-                                        }})
-                                        setLiked (!liked) }
+                                        }}) 
+                                    }
                                    return <FavButton 
                                 onClick={ handleFavClick } likes={ likes } liked= { liked } /> }
                                 }
-                                
                             </ToggleLikeMutation>    
                                
                          </Fragment>

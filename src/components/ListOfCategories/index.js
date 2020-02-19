@@ -43,17 +43,7 @@ export const ListOfCategories = () => {
 
     const [ showFixed, setShowFixed ] = useState (false)
 
-    // Efecto 1: Obtener DB asíncrono y modificar el State
-
-    // useEffect ( function () {
-    //     window.fetch('https://api.myjson.com/bins/ccoom')
-    //         .then( res => res.json() )
-    //         .then( response => {
-    //             setCategories(response)
-    //         })
-    // }, [])
-
-    // Efecto 2: Renderizado de lista fija
+    // Efecto : Renderizado de lista fija
 
     useEffect (function () {
         const onScroll = e => {
@@ -81,7 +71,9 @@ export const ListOfCategories = () => {
             { loading 
                 ?  <Item key='loading'> <Category /></Item>
                 :  categories.map( category => 
-                        <Item key={category.id}> <Category  {...category} path={ `/pet/${category.id} `}/> </Item>) 
+                        <Item key={category.id}> 
+                            <Category  {...category} path={ `/pet/${category.id} `}/> 
+                        </Item> ) 
             }
         </List>
     )
