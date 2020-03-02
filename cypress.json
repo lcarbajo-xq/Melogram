@@ -1,0 +1,6 @@
+{
+    "baseUrl": "https://melogram2.lcarbajo.now.sh/",
+    "chromeWebSecurity": false,
+    "viewportWidth": 500,
+    "viewportHeight": 800
+}

@@ -33,7 +33,7 @@ function useCategoriesData () {
     return { categories, loading }
 }
 
-export const ListOfCategories = () => {
+const ListOfCategoriesComponent = () => {
 
     // Usamos el Custom Hook para el fetchin de datos
 
@@ -88,3 +88,5 @@ export const ListOfCategories = () => {
         
     )
 }
+
+export const ListOfCategories = React.memo( ListOfCategoriesComponent )

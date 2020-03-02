@@ -38,11 +38,10 @@ export const PhotoCard = ({ id, liked, likes = 0, src = '' }) => {
                                             input: { id }
                                         }}) 
                                     }
-                                   return <FavButton 
-                                onClick={ handleFavClick } likes={ likes } liked= { liked } /> }
+                                   return <FavButton onClick={ handleFavClick } likes={ likes } liked= { liked } /> 
+                                    }
                                 }
-                            </ToggleLikeMutation>    
-                               
+                            </ToggleLikeMutation>         
                          </Fragment>
             }
         </Article>
